@@ -31,8 +31,6 @@ var main = {
     name: 'main',
     // render function renders the view
     render : function(CT) {
-        
-		console.log(exp.trial_info.main_trials[CT].sentence)
 		
         // fill variables in view-template
         var viewTemplate = $('#main-view').html();
