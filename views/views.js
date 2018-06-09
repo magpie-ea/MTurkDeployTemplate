@@ -3,7 +3,7 @@ var intro = {
     // introduction title
     "title": "Welcome!",
     // introduction text
-    "text": "Thank you for participating in our study. In this study, you will see pictures and click on buttons.",
+    "text": "Thank you for participating in our study. In this study, you will judge whether each of 10 short sentences is true or false.",
     // introduction's slide proceeding button text
     "buttonText": "Begin experiment",
     // render function renders the view
