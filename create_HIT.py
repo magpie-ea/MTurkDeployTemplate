@@ -18,8 +18,8 @@ new_hit = mturk.create_hit(
     Title = 'Quick and easy sentence judgements',
     Description = 'Judge whether 10 short sentences are true; very simple and quick but fun study!',
     Keywords = 'linguistics, psychology, truth',
-    Reward = '0.5', # how much to pay
-    MaxAssignments = 1, # how many participants
+    Reward = '0.4', # how much to pay
+    MaxAssignments = 20, # how many participants
     LifetimeInSeconds = 172800, 
     AssignmentDurationInSeconds = 600,
     AutoApprovalDelayInSeconds = 600,
@@ -30,3 +30,7 @@ print("A new HIT has been created. You can preview it here:")
 # print("https://workersandbox.mturk.com/mturk/preview?groupId=" + new_hit['HIT']['HITGroupId']) # comment in for sandbox mode
 print("https://worker.mturk.com/mturk/preview?groupId=" + new_hit['HIT']['HITGroupId']) # use this otherwise
 print("HITID = " + new_hit['HIT']['HITId'] + " (for your reference)")
+
+## ToDo:
+## - make choice sandbox/live dependent on 'config_deploy.js'; abort and warn if specified deploy method in that file is not MTurk related
+## - create/append to a logfile that contains information about previously posted HITs (HITids, times, number of assignments etc.)
