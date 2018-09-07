@@ -31,7 +31,7 @@ var main = {
     name: 'main',
     // render function renders the view
     render : function(CT) {
-		
+        
         // fill variables in view-template
         var viewTemplate = $('#main-view').html();
         $('#main').html(Mustache.render(viewTemplate, {
@@ -64,7 +64,7 @@ var main = {
         startingTime = Date.now();
         
     },
-	trials : main_trials.length
+    trials : main_trials.length
 };
 
 var postTest = {
@@ -111,7 +111,7 @@ var thanks = {
         viewTemplate = $('#thanks-view').html();
 
         // what is seen on the screen depends on the used deploy method
-		//    normally, you do not need to modify this
+        //    normally, you do not need to modify this
         if ((config_deploy.is_MTurk) || (config_deploy.deployMethod === 'directLink')) {
             // updates the fields in the hidden form with info for the MTurk's server
             $('#main').html(Mustache.render(viewTemplate, {
