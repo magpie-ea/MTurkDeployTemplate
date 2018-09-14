@@ -118,11 +118,10 @@ var thanks = {
                 thanksMessage: this.message,
             }));
         } else if (config_deploy.deployMethod === 'Prolific') {
-            var prolificURL = 'https://prolific.ac/submissions/complete?cc=' + config_deploy.prolificCode;
 
             $('main').html(Mustache.render(viewTemplate, {
                 thanksMessage: this.message,
-                extraMessage: "Please press the button below<br />" + '<a href=' + prolificURL +  ' class="prolific-url">Finished!</a>'
+                extraMessage: "Please press the button below<br />" + '<a href=' + config_deploy.prolificURL +  ' class="prolific-url">Finished!</a>'
             }));
         } else if (config_deploy.deployMethod === 'debug') {
             $('main').html(Mustache.render(viewTemplate, {}));
