@@ -8,8 +8,7 @@ var intro = {
     "buttonText": "Begin experiment",
     // render function renders the view
     render: function() {
-        
-        viewTemplate = $('#intro-view').html();
+        var viewTemplate = $('#intro-view').html();
         $('#main').html(Mustache.render(viewTemplate, {
             title: this.title,
             text: this.text,
@@ -17,7 +16,7 @@ var intro = {
         }));
 
         // moves to the next view
-        $('#next').on('click', function(e) {
+        $('#next').on('click', function() {
             exp.findNextView();
         });
 
@@ -26,19 +25,19 @@ var intro = {
     trials: 1
 };
 
-
 var main = {
     name: 'main',
     // render function renders the view
-    render : function(CT) {
+    render: function(CT) {
         
         // fill variables in view-template
         var viewTemplate = $('#main-view').html();
         $('#main').html(Mustache.render(viewTemplate, {
             sentence: exp.trial_info.main_trials[CT].sentence,
-            option1:  exp.trial_info.main_trials[CT].option1,
-            option2:  exp.trial_info.main_trials[CT].option2,
+            option1: exp.trial_info.main_trials[CT].option1,
+            option2: exp.trial_info.main_trials[CT].option2
         }));
+        var startingTime = Date.now();
         
         // update the progress bar based on how many trials there are in this round
         var filled = exp.currentTrialInViewCounter * (180 / exp.views_seq[exp.currentViewCounter].trials);
@@ -47,12 +46,12 @@ var main = {
         // event listener for buttons; when an input is selected, the response
         // and additional information are stored in exp.trial_info
         $('input[name=answer]').on('change', function() {
-            RT = Date.now() - startingTime; // measure RT before anything else
-            trial_data = {
+            var RT = Date.now() - startingTime; // measure RT before anything else
+            var trial_data = {
                 trial_type: "mainForcedChoice",
                 trial_number: CT + 1,
                 sentence: exp.trial_info.main_trials[CT].sentence,
-                condition:  exp.trial_info.main_trials[CT].condition,
+                condition: exp.trial_info.main_trials[CT].condition,
                 option_chosen: $('input[name=answer]:checked').val(),
                 RT: RT
             };
@@ -73,9 +72,8 @@ var postTest = {
     "text": "Answering the following questions is optional, but will help us understand your answers.",
     "buttonText": "Continue",
     // render function renders the view
-    render : function() {
-
-        viewTemplate = $('#post-test-view').html();
+    render: function() {
+        var viewTemplate = $('#post-test-view').html();
         $('#main').html(Mustache.render(viewTemplate, {
             title: this.title,
             text: this.text,
@@ -105,23 +103,22 @@ var postTest = {
 
 var thanks = {
     name: 'thanks',
-    "message": "Thank you for taking part in this experiment!",
+    message: "Thank you for taking part in this experiment!",
     render: function() {
-
-        viewTemplate = $('#thanks-view').html();
+        var viewTemplate = $('#thanks-view').html();
 
         // what is seen on the screen depends on the used deploy method
         //    normally, you do not need to modify this
         if ((config_deploy.is_MTurk) || (config_deploy.deployMethod === 'directLink')) {
             // updates the fields in the hidden form with info for the MTurk's server
             $('#main').html(Mustache.render(viewTemplate, {
-                thanksMessage: this.message,
+                thanksMessage: this.message
             }));
         } else if (config_deploy.deployMethod === 'Prolific') {
 
             $('main').html(Mustache.render(viewTemplate, {
                 thanksMessage: this.message,
-                extraMessage: "Please press the button below<br />" + '<a href=' + config_deploy.prolificURL +  ' class="prolific-url">Finished!</a>'
+                extraMessage: "Please press the button below<br />".concat('<a href=', config_deploy.prolificURL, ' class="prolific-url">Finished!</a>')
             }));
         } else if (config_deploy.deployMethod === 'debug') {
             $('main').html(Mustache.render(viewTemplate, {}));

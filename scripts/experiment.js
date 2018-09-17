@@ -2,10 +2,12 @@
 exp.customize = function() {
     
     // specify view order
-    this.views_seq = [intro, 
-                     main,
-                     postTest,
-                     thanks];
+    this.views_seq = [
+        intro, 
+        main,
+        postTest,
+        thanks
+    ];
 
     // prepare information about trials (procedure)
     // randomize main trial order, but keep practice trial order fixed
